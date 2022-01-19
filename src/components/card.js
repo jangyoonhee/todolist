@@ -1,7 +1,7 @@
 import React from 'react';
 import '../css/basic.css';
 
-const card = ({form, children}) => {
+const card = ({form, todoList}) => {
   return (
     <main className="card-template">
       <div className="card-title">
@@ -11,7 +11,7 @@ const card = ({form, children}) => {
         {form}
       </section>
       <section className="todos-wrapper">
-        { children }
+        { todoList }
       </section>
     </main>
   );
