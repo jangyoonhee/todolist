@@ -1,0 +1,25 @@
+.blue {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-left: 1rem;
+    background: #22b8cf;
+    border-radius: 3px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .red{
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-left: 1rem;
+    background: #d60c0c;
+    border-radius: 3px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+  }

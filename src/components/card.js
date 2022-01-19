@@ -1,5 +1,5 @@
 import React from 'react';
-import './css/basic.css';
+import '../css/basic.css';
 
 const card = ({form, children}) => {
   return (

@@ -23,3 +23,21 @@
   .todos-wrapper {
     min-height: 5rem;
   }
+
+  .form {
+    display: flex;
+  }
+  
+  .form input {
+    flex: 1;
+    font-size: 1.25rem;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #c5f6fa;
+  }
+  
+
+  
+  .create-button:hover {
+    background: #3bc9db;
+  }

@@ -5,6 +5,8 @@ import Radio from "./components/radio";
 import Select from "./components/select";
 import Slider from "./components/slider";
 import Card from "./components/card";
+import Form from "./components/form";
+import { render } from "@testing-library/react";
 
 function App() {
   /*
@@ -25,7 +27,7 @@ function App() {
   */ 
   return (
     <div>
-      <Card>
+      <Card form={<Form/>}>
 
         <h3>Input</h3>
         <Input />
