@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import Checkbox from './checkbox/index'
-import Input from './Input/index'
+import Input from './input/index'
+
 
 class todoItem extends Component {
   render() {
-    const { id, text } = this.props;
+    const { id, text , checked} = this.props;
 
     return (
       <div id={id}>
-        <Checkbox/><Input>{text}</Input>
+        <Checkbox className={`todo-text ${checked && 'checked'}`}/><Input>{text}</Input>
       </div>
     );
   }

@@ -36,8 +36,16 @@
     border-bottom: 1px solid #c5f6fa;
   }
   
-
-  
   .create-button:hover {
     background: #3bc9db;
+  }
+
+  .todo-text {
+    flex: 1; 
+    word-break: break-all;
+  }
+  
+  .checked {
+    text-decoration: line-through;
+    color: #adb5bd;
   }

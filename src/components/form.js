@@ -3,15 +3,13 @@ import '../css/basic.css';
 import Button from "./button/index";
 import Input from "./input/index";
 
-const Form = ({value, onChange, onCreate, onKeyPress}) => {
+const Form = ({value, onChange, onKeyPress}) => {
+  
   return (
     <div className="form">
       <Input value={value} onChange={onChange} onKeyPress={onKeyPress}/>
-      <Button colorName="blue" onClick={onCreate}>
+      <Button colorName="blue">
         추가
-      </Button>
-      <Button colorName="red" onClick={onCreate}>
-        삭제
       </Button>
     </div>
   );
