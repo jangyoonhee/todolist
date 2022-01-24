@@ -5,12 +5,15 @@ import TodoList from "./components/todoList";
 
 class App extends Component {
 
-  id = 3 
-  state = {
-    input: '',
-    todos: [
-    ],
-    message: '',
+  constructor(props) {
+    super(props);
+    this.state = {
+      id: 3,
+      input: '',
+      todos: [
+      ],
+      message: '',
+    }
   }
 
   handleChange = (e) => {
@@ -25,19 +28,33 @@ class App extends Component {
       input: '', // 인풋 비우고
       // concat 을 사용하여 배열에 추가
       todos: todos.concat({
-        id: this.id++,
+        id: this.state.id++,
         text: input,
         checked: false
       })
     });
   }
-  handleKeyPress = (e) => {
-    // 눌려진 키가 Enter 면 handleCreate 호출
-    this.setState({message: e.key})
-    console.log(e, e.key);
-    if(e.key === 'Enter') {
-      this.handleCreate();
-    }
+  // handleKeyPress = (e) => {
+  //   // 눌려진 키가 Enter 면 handleCreate 호출
+  //   this.setState({message: e.key})
+  //   console.log(e, e.key);
+  //   if(e.key === 'Enter') {
+  //     this.handleCreate();
+  //   }
+  // }
+
+  onAddEvent = (message) => {
+    console.log(message);
+    const { input, todos } = this.state;
+    this.setState({
+      input: '', // 인풋 비우고
+      // concat 을 사용하여 배열에 추가
+      todos: todos.concat({
+        id: this.state.id++,
+        text: input,
+        checked: false
+      })
+    });
   }
 
 
@@ -46,21 +63,26 @@ class App extends Component {
     const {
       handleChange,
       handleCreate,
-      handleKeyPress
+      // handleKeyPress,
+      onAddEvent
     } = this;
 
     return (
+      <>
       <Card form={(
         <Form 
           value={input}
-          onKeyPress={handleKeyPress}
+          // onKeyPress={handleKeyPress}
           onChange={handleChange}
           onCreate={handleCreate}
+          onAddEvent={onAddEvent}
         />
       )}>
         <TodoList todos={todos}/>
-        {this.message}
       </Card>
+        {this.message}
+        <button onClick={() => {console.log('Hi');}}>Hello World</button>
+      </>
     );
   }
 }
