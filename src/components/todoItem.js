@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
-import Checkbox from './checkbox/index'
-import Input from './input/index'
-
+import '../css/todoItem.css';
 
 class todoItem extends Component {
   render() {
-    const { id, text , checked} = this.props;
+    const { id, text , checked, onToggle, onRemove } = this.props;
 
     return (
-      <div id={id}>
-        <Checkbox className={`todo-text ${checked && 'checked'}`}/><Input>{text}</Input>
+      <div className="todo-item" onClick={() => onToggle(id)}>
+      <div className="remove" onClick={(e) => {
+        e.stopPropagation(); // onToggle 이 실행되지 않도록 함
+        onRemove(id)}
+      }>&times;</div>
+      <div className={`todo-text ${checked && 'checked'}`}>
+        <div>{text}</div>
+      </div>
+      {
+        checked && (<div className="check-mark">✓</div>)
+      }
       </div>
     );
   }
