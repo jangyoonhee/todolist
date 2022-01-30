@@ -57,6 +57,13 @@ class App extends Component {
     });
   }
 
+  handleToggle = () => {
+    console.log();
+  }
+
+  handleRemove = () => {
+    console.log();
+  }
 
   render() {
     const { input, todos } = this.state;
@@ -64,11 +71,12 @@ class App extends Component {
       handleChange,
       handleCreate,
       // handleKeyPress,
-      onAddEvent
+      onAddEvent,
+      handleToggle,
+      handleRemove
     } = this;
 
     return (
-      <>
       <Card form={(
         <Form 
           value={input}
@@ -77,13 +85,15 @@ class App extends Component {
           onCreate={handleCreate}
           onAddEvent={onAddEvent}
         />
+      )} todos={(
+        <TodoList 
+          todos={todos}
+          onToggle={handleToggle}
+          onRemove={handleRemove}
+        />
       )}>
-        <TodoList todos={todos}/>
       </Card>
-        {this.message}
-        <button onClick={() => {console.log('Hi');}}>Hello World</button>
-      </>
-    );
+    )
   }
 }
 
