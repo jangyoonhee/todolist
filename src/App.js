@@ -8,7 +8,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: 3,
+      itemID : 0,
       input: '',
       todos: [
       ],
@@ -18,60 +18,72 @@ class App extends Component {
 
   handleChange = (e) => {
     this.setState({
-      input: e.target.value // input 의 다음 바뀔 값
+      input: e // input 의 다음 바뀔 값
     });
   }
-  
-  handleCreate = () => {
-    const { input, todos } = this.state;
-    this.setState({
-      input: '', // 인풋 비우고
-      // concat 을 사용하여 배열에 추가
-      todos: todos.concat({
-        id: this.state.id++,
-        text: input,
-        checked: false
-      })
-    });
-  }
-  // handleKeyPress = (e) => {
-  //   // 눌려진 키가 Enter 면 handleCreate 호출
-  //   this.setState({message: e.key})
-  //   console.log(e, e.key);
-  //   if(e.key === 'Enter') {
-  //     this.handleCreate();
-  //   }
-  // }
 
-  onAddEvent = (message) => {
-    console.log(message);
-    const { input, todos } = this.state;
+  handleAddClick = (e) => {
     this.setState({
-      input: '', // 인풋 비우고
-      // concat 을 사용하여 배열에 추가
+      input: e // input 의 다음 바뀔 값
+    });
+
+    const {itemID, input, todos } = this.state;
+    this.setState({
+      itemID : itemID+1,
       todos: todos.concat({
-        id: this.state.id++,
+        id : itemID,
         text: input,
         checked: false
       })
     });
   }
 
-  handleToggle = () => {
-    console.log();
+  handleAddEvent = () => {
+    const {itemID, input, todos } = this.state;
+    this.setState({
+      itemID : itemID+1,
+      todos: todos.concat({
+        id : itemID,
+        text: input,
+        checked: false
+      })
+    });
   }
 
-  handleRemove = () => {
-    console.log();
+  handleToggle = (itemID) => {
+    const { todos } = this.state;
+    const index = todos.findIndex(todo => todo.id === itemID);
+    const selected = todos[index]; 
+    const nextTodos = [...todos];
+
+    nextTodos[index] = { 
+      ...selected, 
+      checked: !selected.checked
+    };
+
+    this.setState({
+      todos: nextTodos
+    });
+  }
+
+  handleRemove = (itemID) => {
+    const { todos } = this.state;
+    const index = todos.findIndex(todo => todo.id === itemID);
+    const nextTodos = [...todos];
+
+    nextTodos.splice(index,1);
+   
+    this.setState({
+      todos: nextTodos
+    });
   }
 
   render() {
-    const { input, todos } = this.state;
+    const {itemID, todos } = this.state;
     const {
       handleChange,
-      handleCreate,
-      // handleKeyPress,
-      onAddEvent,
+      handleAddEvent,
+      handleAddClick,
       handleToggle,
       handleRemove
     } = this;
@@ -79,13 +91,12 @@ class App extends Component {
     return (
       <Card form={(
         <Form 
-          value={input}
-          // onKeyPress={handleKeyPress}
+          itemID = {itemID}
           onChange={handleChange}
-          onCreate={handleCreate}
-          onAddEvent={onAddEvent}
+          onAddEvent={handleAddEvent}
+          onAddClick={handleAddClick} 
         />
-      )} todos={(
+      )} todoList={(
         <TodoList 
           todos={todos}
           onToggle={handleToggle}

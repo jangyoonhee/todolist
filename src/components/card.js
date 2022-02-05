@@ -5,7 +5,7 @@ const card = ({form, todoList}) => {
   return (
     <main className="card-template">
       <div className="card-title">
-        TODAY
+        오늘 할일 :)
       </div>
       <section className="form-wrapper">
         {form}

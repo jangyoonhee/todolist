@@ -7,18 +7,18 @@ class todoList extends Component {
     const todoList = todos.map(
       ({id, text, checked}) =>(
         <TodoItem
+          key={id}
           id={id}
           text={text}
           checked={checked}
           onToggle={onToggle}
           onRemove={onRemove} 
-          key={id}
         ></TodoItem>
       )
     );
 
     return (
-       <div id='aaaa'>
+       <div className="todoList" >
          {todoList}
        </div>
     );
