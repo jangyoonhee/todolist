@@ -1,17 +1,15 @@
 import React from "react";
 
-const Input = ({onChangeEvent , onEnterEvent }) => {
+const Input = ({onChangeEvent , onEnterEvent, value }) => {
 
   const onSelfKeyPress = (e) => {
-    onChangeEvent(e.target.value);
 
     if (e.key === 'Enter') {
-      onEnterEvent(e.target.value)
-      e.target.value = '';
+      onEnterEvent();
     }
   }
 
-  return <input onKeyPress={onSelfKeyPress} type="text"/>
+  return <input value={value ?? ''} onChange={(e) => onChangeEvent(e.target.value)} onKeyPress={onSelfKeyPress} type="text"/>
 }
 
 export default Input
